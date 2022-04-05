@@ -1,0 +1,9 @@
+# Ignore Qt generated artifacts (intermediate objects, dependency files)
+debug
+release
+Makefile*
+*.Debug
+*.Release
+*.stash
+*.user
+*.rc
