@@ -86,16 +86,16 @@ public:
         testTable->item(rowNumber, columnNumber)->setText(textString);
     }
 
-    void groupCells(int rowNumber, int span)
+    void groupCells(int rowNumber, int columnNumber, int rowSpan, int columnSpan)
     {
-        if(rowNumber>=testTable->rowCount()) return;
-        testTable->setSpan(rowNumber,1,1,span);
+        if(rowNumber>=testTable->rowCount() || columnNumber>=testTable->columnCount()) return;
+        testTable->setSpan(rowNumber,columnNumber,rowSpan,columnSpan);
     }
 
-    void ungroupCells(int rowNumber)
+    void ungroupCells(int rowNumber, int columnNumber)
     {
-        if(rowNumber>=testTable->rowCount()) return;
-        testTable->setSpan(rowNumber,1,1,1);
+        if(rowNumber>=testTable->rowCount() || columnNumber>=testTable->columnCount()) return;
+        testTable->setSpan(rowNumber,columnNumber,1,1);
     }
 
 public slots:
@@ -104,12 +104,12 @@ public slots:
         Q_UNUSED(event)
         if(button->text()=="Group")
         {
-            groupCells(1,2);
+            groupCells(1,1,2,1);
             button->setText("Ungroup");
         }
         else
         {
-            ungroupCells(1);
+            ungroupCells(1,1);
             button->setText("Group");
         }
     }
